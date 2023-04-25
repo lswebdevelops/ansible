@@ -1,0 +1,10 @@
+---
+- name: playbook for tests
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: display info
+      debug:
+        msg: "hostname: {{ ansible_nodename }} OS: {{ ansible_os_family }}"
+
+...

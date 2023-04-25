@@ -1,0 +1,16 @@
+---
+- name: playbook for tests
+  hosts: all
+  gather_facts: yes
+  vars:
+    - username: "luciano"
+  tasks:
+    - name: display info
+      debug:
+        msg: "hostname: {{ ansible_nodename }} OS: {{ ansible_os_family }}"
+    - name: create user
+      ansible.builtin.user:
+        name: "{{username}}"
+        shell: /bin/bash
+
+...

@@ -1,0 +1,31 @@
+---
+- name: playbook for tests
+  hosts: all
+  gather_facts: yes
+  become: yes
+  vars:
+    - user_name: "luciano"
+  tasks:
+    - name: display info
+      debug:
+        msg: "hostname: {{ ansible_nodename }} OS: {{ ansible_os_family }}"
+    - name: create user
+      ansible.builtin.user:
+        name: "{{user_name}}"
+        shell: /bin/bash
+    - name: apply sudoers template
+      ansible.builtin.template:
+        src: sudoers.j2
+        dest: /etc/sudoers.d/{{user_name}}
+        owner: root
+        group: root
+        mode: '0440'
+    - name: Set authorized key for {{user_name}}
+      authorized_key:
+        user: "{{user_name}}"
+        state: present
+        key: "{{lookup('file', '/home/{{user_name}}/.ssh/id_rsa.pub')}}"
+
+
+
+...
