@@ -11,6 +11,7 @@
     - name: delete a file
       ansible.builtin.file:
         path: /home/luciano/createdbyansible/web_test_file
+        # recurse: true > when needed to create recursively
         state: absent
     
     - name: delete a directory 

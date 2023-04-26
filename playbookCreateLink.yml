@@ -1,0 +1,21 @@
+---
+- name: creating a link
+  hosts: all
+  tasks:         
+    - name:  Create a directory if it does not exist
+      ansible.builtin.file:
+        path: /home/luciano/createdbyansible
+        state: directory
+    - name: Createa link
+      ansible.builtin.file:
+        src: /home/luciano/createdbyansible
+        dest: /home/luciano/createdbyansibleLink
+        state: link
+ 
+      
+   
+        
+
+    
+
+...
