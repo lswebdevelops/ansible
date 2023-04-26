@@ -1,8 +1,8 @@
 ---
-- name: Ping and Print
-  hosts: localhost
+- name: creating and deleting
+  hosts: all
   tasks:         
-    - name:  Create a directory if it does not exist> /home/luciano/createdbyansible
+    - name:  Create a directory if it does not exist
       ansible.builtin.file:
         path: /home/luciano/createdbyansible
         state: directory
@@ -10,18 +10,18 @@
 
     - name: create a file
       ansible.builtin.file:
-        path: /home/luciano/createdbyansible/test_file
+        path: /home/luciano/createdbyansible/web_test_file
         state: touch
       
     - name: Change file ownership, group and permissions
       ansible.builtin.file:
-        path: /home/luciano/createdbyansible/test_file
+        path: /home/luciano/createdbyansible/web_test_file
         owner: luciano
         group: luciano
         mode: '0666' 
     - name: Touch the same file, but add/remove some permissions
       ansible.builtin.file:
-        path: /home/luciano/createdbyansible/test_file
+        path: /home/luciano/createdbyansible/web_test_file
         state: touch
         mode: u+rw,g-wx,o-rwx
         

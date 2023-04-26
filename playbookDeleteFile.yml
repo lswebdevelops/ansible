@@ -1,0 +1,27 @@
+---
+- name: creating and deleting
+  hosts: all
+  tasks:         
+    - name:  Create a directory if it does not exist
+      ansible.builtin.file:
+        path: /home/luciano/createdbyansible
+        state: directory
+        mode: '0755'
+
+    - name: delete a file
+      ansible.builtin.file:
+        path: /home/luciano/createdbyansible/web_test_file
+        state: absent
+    
+    - name: delete a directory 
+      ansible.builtin.file:
+        path: /home/luciano/createdbyansible
+        state: absent
+
+      
+   
+        
+
+    
+
+...
