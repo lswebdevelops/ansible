@@ -1,0 +1,8 @@
+---
+- name: Get Linux distribution version
+  hosts: web
+  gather_facts: true
+  tasks:
+    - name: Display Linux distribution version
+      ansible.builtin.debug:
+        var: ansible_lsb
